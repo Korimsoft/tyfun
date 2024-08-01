@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "CommonJS",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "strict": false,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
+  },
+  "include": ["./src/*"],
+  "exclude": [ "./test/*" ]
+}
