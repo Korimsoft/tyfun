@@ -1,4 +1,4 @@
-import {byId} from '../../src/searchFilters/byId';
+import {byId} from '../../src/filters/byId';
 import {HasId} from '../../src/types/hasId';
 import {HasTestDescription} from '../testHelpers/hasTestDescription';
 

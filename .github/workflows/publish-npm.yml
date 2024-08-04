@@ -4,8 +4,11 @@
 name:  Deploy to NPM repo
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
+    tags:
+      - v*
 
 jobs:
   build:

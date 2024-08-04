@@ -1,4 +1,4 @@
-import {extractAProperty, extractId} from '../../src/mappers/extractId';
+import {extractAProperty, extractId} from '../../src/mappers/extractAProperty';
 import {HasId} from '../../src/types/hasId';
 import {HasTestDescription} from '../testHelpers/hasTestDescription';
 
@@ -7,7 +7,7 @@ describe('extractId', () => {
     const objectWithAnId: HasId = {
       id: 'anId',
     };
-    //expect(extractId(objectWithAnId).toBe('anId');
+    //expect(extractAProperty(objectWithAnId).toBe('anId');
   });
 });
 

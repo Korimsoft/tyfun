@@ -1,5 +1,5 @@
 import {HasId} from '../types/hasId';
-import {Mapper} from '../types/mapper';
+import {Mapper} from './mapper';
 
 export function extractId(item: HasId) {
   return item.id;
