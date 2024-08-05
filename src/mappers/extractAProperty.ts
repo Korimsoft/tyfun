@@ -1,7 +1,7 @@
-import {HasId} from '../types/hasId';
+import {ObjectWithId} from '../custom-types/objectWithId';
 import {Mapper} from './mapper';
 
-export function extractId(item: HasId) {
+export function extractId(item: ObjectWithId) {
   return item.id;
 }
 

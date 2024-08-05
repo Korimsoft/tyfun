@@ -1,3 +1,3 @@
-export * from './hasId';
+export * from './objectWithId';
 export * from './objectMap';
 export * from './predicate';

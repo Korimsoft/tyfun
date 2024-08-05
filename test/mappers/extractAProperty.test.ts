@@ -1,10 +1,10 @@
 import {extractAProperty, extractId} from '../../src/mappers/extractAProperty';
-import {HasId} from '../../src/types/hasId';
+import {ObjectWithId} from '../../src/custom-types/objectWithId';
 import {HasTestDescription} from '../testHelpers/hasTestDescription';
 
 describe('extractId', () => {
   it('Should extract an Id property from an object', () => {
-    const objectWithAnId: HasId = {
+    const objectWithAnId: ObjectWithId = {
       id: 'anId',
     };
     //expect(extractAProperty(objectWithAnId).toBe('anId');

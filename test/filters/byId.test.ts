@@ -1,10 +1,10 @@
 import {byId} from '../../src/filters/byId';
-import {HasId} from '../../src/types/hasId';
+import {ObjectWithId} from '../../src/custom-types/objectWithId';
 import {HasTestDescription} from '../testHelpers/hasTestDescription';
 
 type TestParams = {
   searchedId: string | number;
-  givenAnObject: any & HasId;
+  givenAnObject: any & ObjectWithId;
   expected: boolean;
 } & HasTestDescription;
 

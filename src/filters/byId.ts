@@ -1,6 +1,6 @@
-import {HasId} from '../types/hasId';
-import {Predicate} from '../types/predicate';
+import {ObjectWithId} from '../custom-types';
+import {Predicate} from '../custom-types';
 
-export function byId<T>(id: T): Predicate<HasId<T>> {
-  return (item: HasId<T>) => id === item?.id;
+export function byId<T>(id: T): Predicate<ObjectWithId<T>> {
+  return (item: ObjectWithId<T>) => id === item?.id;
 }
