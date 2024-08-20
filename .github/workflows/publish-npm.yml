@@ -27,7 +27,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish the artifact to Github repo
-        run: npm publish
+        run: npm login --registry=https://npm.pkg.github.com && npm publish
         env:
           NPM_CONFIG_REGISTRY: 'https://npm.pkg.github.com'
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
