@@ -1,4 +1,4 @@
-name:  Deploy to the NPM repo
+name: Deploy to the NPM repo
 
 on:
   push:
@@ -12,25 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [ 20.x ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    - run: npm publish
-      env: 
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://npm.pkg.github.com'
-    - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+      - name: Publish the artifact to NPM registry
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
