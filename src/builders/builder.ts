@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import {cloneDeep} from 'lodash';
 
 export type Builder<T> = {
   init: (prototype?: Partial<T>) => InitializedBuilder<T>;
@@ -12,7 +12,7 @@ type InitializedBuilder<T> = {
 type PropertyAssignment<T> = <TValue extends T[keyof T]>(propertyKey: keyof T, value: TValue) => InitializedBuilder<T>;
 
 export function aBuilder<T>(prototype: T = null as T): InitializedBuilder<T> {
-  const builtObject = _.cloneDeep(prototype) ?? ({} as T);
+  const builtObject = cloneDeep(prototype) ?? ({} as T);
 
   return {
     setProperty: assignAProperty<T>(builtObject),
@@ -23,6 +23,6 @@ export function aBuilder<T>(prototype: T = null as T): InitializedBuilder<T> {
 function assignAProperty<T>(builtObject: T): PropertyAssignment<T> {
   return <TValue extends T[keyof T]>(propertyKey: keyof T, value: TValue) => {
     builtObject[propertyKey] = value;
-    return aBuilder(builtObject);
+    return aBuilder<T>(builtObject);
   };
 }

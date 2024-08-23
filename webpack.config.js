@@ -5,7 +5,7 @@ module.exports = {
     target: 'web',
     devtool: 'inline-source-map',
     output: {
-        path: path.resolve(__dirname + '/dist'),
+        path: path.resolve(__dirname + '/dist/'),
         filename: 'index.js',
         library: {
             name: 'tyfun-[version]',

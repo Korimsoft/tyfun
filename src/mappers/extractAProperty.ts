@@ -1,4 +1,4 @@
-import {ObjectWithId} from '../custom-types/objectWithId';
+import {ObjectWithId} from '../custom-types';
 import {Mapper} from './mapper';
 
 export function extractId(item: ObjectWithId) {

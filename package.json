@@ -2,8 +2,8 @@
   "name": "korimsoft-tyfun",
   "version": "0.2.12",
   "description": "Korimsoft's TyFun - A library of TypeScript functions, types, helpers, and utilities",
-  "main": "/dist/index.js",
-  "types": "/dist/type-decl/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/type-decl/index.d.ts",
   "scripts": {
     "compile": "webpack ",
     "build": "npm run compile",
@@ -17,7 +17,7 @@
     "url": "git+ssh://git@github.com/Korimsoft/tyfun.git"
   },
   "files": [
-    "/dist/**"
+    "./dist/**"
   ],
   "keywords": [
     "Typescript",
