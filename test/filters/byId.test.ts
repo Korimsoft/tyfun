@@ -1,5 +1,5 @@
-import {byId} from '../../src/filters/byId';
-import {ObjectWithId} from '../../src/custom-types/objectWithId';
+import {byId} from '../../src';
+import {ObjectWithId} from '../../src';
 import {HasTestDescription} from '../testHelpers/hasTestDescription';
 
 type TestParams = {

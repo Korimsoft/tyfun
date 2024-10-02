@@ -7,7 +7,7 @@ describe('extractId', () => {
     const objectWithAnId: ObjectWithId = {
       id: 'anId',
     };
-    //expect(extractAProperty(objectWithAnId).toBe('anId');
+    expect(extractId(objectWithAnId)).toBe('anId');
   });
 });
 

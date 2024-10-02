@@ -1,4 +1,4 @@
-import {byProperty} from "../../src/filters/byProperty";
+import {byProperty} from "../../src";
 
 describe('byProperty', () => {
     type TestParam = {
