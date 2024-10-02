@@ -18,7 +18,8 @@
     "declarationMap": true,
     "moduleDetection": "force",
     "moduleResolution": "NodeNext",
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true
   },
   "exclude": [ "./test/*", "./node_modules/" ]
 }
