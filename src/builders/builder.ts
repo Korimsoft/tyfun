@@ -1,28 +1,34 @@
-import {cloneDeep} from 'lodash';
+import {cloneDeep, values} from 'lodash';
 
-export type Builder<T> = {
-  init: (prototype?: Partial<T>) => InitializedBuilder<T>;
-};
+type WithMethodName<K extends string> = `with${Capitalize<K>}`;
 
-type InitializedBuilder<T> = {
-  setProperty: PropertyAssignment<T>;
-  build: () => T;
-};
-
-type PropertyAssignment<T> = <TValue extends T[keyof T]>(propertyKey: keyof T, value: TValue) => InitializedBuilder<T>;
-
-export function aBuilder<T>(prototype: T = null as T): InitializedBuilder<T> {
-  const builtObject = cloneDeep(prototype) ?? ({} as T);
-
-  return {
-    setProperty: assignAProperty<T>(builtObject),
-    build: () => builtObject,
-  } as InitializedBuilder<T>;
+type BuilderMethods<T> = {
+    [K in keyof T as WithMethodName<K & string>]: (value: T[K]) => Builder<T>;
 }
 
-function assignAProperty<T>(builtObject: T): PropertyAssignment<T> {
-  return <TValue extends T[keyof T]>(propertyKey: keyof T, value: TValue) => {
-    builtObject[propertyKey] = value;
-    return aBuilder<T>(builtObject);
-  };
+export type Builder<T> = BuilderMethods<T> & {
+    build(): () => T
+};
+
+export function aBuilder<T extends Object>(template: Partial<T> = {}): Builder<T> {
+    const builtObject: Partial<T> = cloneDeep(template);
+    const builder =  new Proxy({} as Builder<T>, {
+        get(target: Builder<T>, key: string) {
+            if (key === 'build') {
+                return () => cloneDeep(builtObject) as T;
+            } else if (key.startsWith('with')) {
+                return (value: any) => {
+                    const propName = `${key.charAt(4).toLowerCase()}${key.substring(5)}`;
+                    builtObject[propName as keyof T] = value;
+                    return builder;
+                }
+            } else {
+                return target[key as keyof Builder<T>];
+            }
+        }
+    });
+
+    return builder;
 }
+
+

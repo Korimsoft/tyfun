@@ -10,10 +10,10 @@ describe('A generic object builder', () => {
 
   it('Builds an instance of an object', () => {
     const builtObject = aBuilder<TestingObject>()
-      .setProperty('stringProperty', 'test')
-      .setProperty('numberProperty', 1024)
-      .setProperty('objectProperty', { someProp: 'test' })
-      .setProperty('arrayProperty', [1, 2, 4, 8, 16])
+      .withStringProperty('test')
+      .withNumberProperty( 1024)
+      .withObjectProperty({ someProp: 'test' })
+      .withArrayProperty( [1, 2, 4, 8, 16])
       .build();
 
     expect(builtObject).toEqual({
@@ -43,7 +43,7 @@ describe('A generic object builder', () => {
       arrayProperty: [1, 2, 4, 8, 16],
     };
 
-    const newObject = aBuilder<TestingObject>(prototype).setProperty('stringProperty', 'newValue').build();
+    const newObject = aBuilder<TestingObject>(prototype).withStringProperty('newValue').build();
 
     expect(prototype).toEqual({
       stringProperty: 'original',
