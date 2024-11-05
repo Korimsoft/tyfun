@@ -43,7 +43,7 @@ describe('A generic object builder', () => {
       arrayProperty: [1, 2, 4, 8, 16],
     };
 
-    const newObject = aBuilder<TestingObject>(prototype).withStringProperty('newValue').build();
+    const newObject: TestingObject = aBuilder<TestingObject>(prototype).withStringProperty('newValue').build();
 
     expect(prototype).toEqual({
       stringProperty: 'original',

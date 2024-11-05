@@ -1,4 +1,4 @@
-import {cloneDeep, values} from 'lodash';
+import {cloneDeep} from 'lodash';
 
 type WithMethodName<K extends string> = `with${Capitalize<K>}`;
 
@@ -7,7 +7,7 @@ type BuilderMethods<T> = {
 }
 
 export type Builder<T> = BuilderMethods<T> & {
-    build(): () => T
+    build: () => T
 };
 
 export function aBuilder<T extends Object>(template: Partial<T> = {}): Builder<T> {
