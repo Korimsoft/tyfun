@@ -1,15 +1,33 @@
 import {aBuilder} from '../../src/builders/builder';
 
 describe('A generic object builder', () => {
-  type TestingObject = {
+  interface TestingObject {
     stringProperty: string;
     numberProperty: number;
     objectProperty: object;
     arrayProperty: any[];
   };
 
-  it('Builds an instance of an object', () => {
+  type TestingObjectType = TestingObject;
+
+  it('Builds an instance of an object - interface case', () => {
     const builtObject = aBuilder<TestingObject>()
+      .withStringProperty('test')
+      .withNumberProperty( 1024)
+      .withObjectProperty({ someProp: 'test' })
+      .withArrayProperty( [1, 2, 4, 8, 16])
+      .build();
+
+    expect(builtObject).toEqual({
+      stringProperty: 'test',
+      numberProperty: 1024,
+      objectProperty: { someProp: 'test' },
+      arrayProperty: [1, 2, 4, 8, 16],
+    } as TestingObject);
+  });
+
+  it('Builds an instance of an object - typee case', () => {
+    const builtObject = aBuilder<TestingObjectType>()
       .withStringProperty('test')
       .withNumberProperty( 1024)
       .withObjectProperty({ someProp: 'test' })

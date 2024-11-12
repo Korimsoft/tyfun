@@ -1,1 +1,1 @@
-export type Mapper<Tinput, Toutput> = (input: Tinput) => Toutput;
+export type Mapper<FromType, ToType> = (from: FromType) => ToType;
