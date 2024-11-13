@@ -1,4 +1,5 @@
-import {isNil} from 'lodash';
+import {isNil} from '../../src';
+
 
 describe('isNil', () => {
     it.each([

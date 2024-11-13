@@ -11,7 +11,8 @@ module.exports = {
             name: 'tyfun-[version]',
             type: 'umd',
         },
-        clean: true
+        clean: true,
+        globalObject: 'this',
     },
     resolve: {
         extensions: ['.ts', '.tsx']
