@@ -1,7 +1,7 @@
 import {Predicate} from '../custom-types';
-import {isNil} from './isNil'
+import {itemIsNil} from './itemIsNil'
 import {not} from '../operators';
 
 export function notNil<T>(): Predicate<T> {
-    return not<T>(isNil<T>());
+    return not<T>(itemIsNil<T>());
 }

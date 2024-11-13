@@ -1,4 +1,4 @@
-import {isNil} from '../../src/filters/isNil';
+import {itemIsNil} from '../../src/filters/itemIsNil';
 
 
 describe('isNil', () => {
@@ -10,6 +10,6 @@ describe('isNil', () => {
         [[], false],
         [{}, false]
     ])('Should return a predicate that checks if an object is null or undefined', (input, expected) => {
-        expect(isNil()(input)).toBe(expected);
+        expect(itemIsNil()(input)).toBe(expected);
     })
 })
