@@ -1,4 +1,4 @@
-import {identity} from 'lodash';
+import { identity } from '../../src/mappers/identity';
 
 describe('Identity', () => {
     it.each(
@@ -10,6 +10,6 @@ describe('Identity', () => {
             [{prop: 'hello'}, {prop: 'hello'}]
         ]
     )('Should return the same value as input', (input, expected) => {
-        expect(identity(input)).toEqual(expected);
+        expect(identity()(input)).toEqual(expected);
     });
 });

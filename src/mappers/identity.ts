@@ -1,3 +1,5 @@
-export function identity<T> (input: T): T {
-    return input;
+import {Mapper} from './mapper';
+
+export function identity<T>(): Mapper<T, T> {
+    return (from :T ) => from;
 }
