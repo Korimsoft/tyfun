@@ -1,34 +1,42 @@
-import {cloneDeep} from 'lodash';
+import { cloneDeep } from 'lodash';
 
-type WithMethodName<K extends string> = `with${Capitalize<K>}`;
+type WithMethodName<K extends string> =
+    K extends `${infer T}${string}`
+        ? T extends Lowercase<T>
+            ? `with${Capitalize<K>}`
+            : `with_${K}`
+        : never;
 
 type BuilderMethods<T> = {
-    [K in keyof T as WithMethodName<K & string>]: (value: T[K]) => Builder<T>;
+    [K in keyof T as WithMethodName<string & K>]: (value: T[K]) => Builder<T>;
 }
 
 export type Builder<T> = BuilderMethods<T> & {
-    build: () => T
+    build: () => T;
 };
 
-export function aBuilder<T extends Object>(template: Partial<T> = {}): Builder<T> {
+export function aBuilder<T extends Record<string, any>>(template: Partial<T> = {}): Builder<T> {
     const builtObject: Partial<T> = cloneDeep(template);
-    const builder =  new Proxy({} as Builder<T>, {
+    const handler = {
         get(target: Builder<T>, key: string) {
             if (key === 'build') {
                 return () => cloneDeep(builtObject) as T;
-            } else if (key.startsWith('with')) {
+            }
+            else {
+                const propName = resolvePropertyName(key);
                 return (value: any) => {
-                    const propName = `${key.charAt(4).toLowerCase()}${key.substring(5)}`;
                     builtObject[propName as keyof T] = value;
-                    return builder;
-                }
-            } else {
-                return target[key as keyof Builder<T>];
+                    return new Proxy(target, handler);
+                };
             }
         }
-    });
+    };
 
-    return builder;
+    return new Proxy({} as Builder<T>, handler);
 }
 
-
+function resolvePropertyName(key: string): string {
+    return  key.startsWith('with_')
+        ? key.slice(5)
+        : key.charAt(4).toLowerCase() + key.slice(5);
+}

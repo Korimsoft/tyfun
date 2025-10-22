@@ -53,6 +53,27 @@ describe('A generic object builder', () => {
     expect(aBuilder<TestingObject>(prototype).build()).toEqual(prototype);
   });
 
+  it('Should use the correct property names (edge case scenario)', () => {
+     type EdgeCaseObject = {
+       ACapitalAtStart: string,
+       thereIsAnAInside: string,
+       thereIsABCinside: string
+     }
+
+     const result: EdgeCaseObject = aBuilder<EdgeCaseObject>()
+         .with_ACapitalAtStart('hello')
+         .withThereIsAnAInside('there')
+         .withThereIsABCinside('General')
+         .build();
+
+     expect(result).toEqual({
+       ACapitalAtStart: 'hello',
+       thereIsAnAInside: 'there',
+       thereIsABCinside: 'General',
+     });
+
+  });
+
   it('Changes a value of an object while keeping the prototype object not mutated', () => {
     const prototype: TestingObject = {
       stringProperty: 'original',
