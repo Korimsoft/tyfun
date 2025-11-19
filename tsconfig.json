@@ -19,7 +19,6 @@
     "moduleDetection": "force",
     "moduleResolution": "NodeNext",
     "noUncheckedIndexedAccess": true,
-    "noUncheckedSideEffectImports": true
   },
   "exclude": [ "./test/*", "./node_modules/" ]
 }
