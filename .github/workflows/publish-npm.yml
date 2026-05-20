@@ -5,6 +5,10 @@ on:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +27,4 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
       - name: Publish the artifact to NPM registry
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance
