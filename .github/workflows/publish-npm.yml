@@ -14,17 +14,28 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 20.x ]
+        node-version: [ 22.x ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
+      - name: Show Node and npm versions
+        run: |
+          node --version
+          npm --version
+
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
+
       - name: Publish the artifact to NPM registry
         run: npm publish --provenance
