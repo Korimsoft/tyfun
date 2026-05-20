@@ -20,12 +20,22 @@
     "./dist/**"
   ],
   "keywords": [
-    "Typescript",
-    "Korimsoft",
-    "Utility",
-    "Library",
-    "TyFun",
-    "Functions"
+    "typescript",
+    "typescript-utils",
+    "utility",
+    "functional-programming",
+    "predicates",
+    "filters",
+    "mappers",
+    "type-guards",
+    "object-utils",
+    "builder-pattern",
+    "fluent-builder",
+    "null-check",
+    "undefined-check",
+    "generic-types",
+    "korimsoft",
+    "tyfun"
   ],
   "author": "Korimsoft",
   "license": "MIT",
