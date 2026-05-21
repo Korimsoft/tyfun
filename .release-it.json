@@ -3,7 +3,7 @@
     "commitMessage": "Release: v${version}",
     "tagName": "v${version}",
     "push": true,
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": true
   },
   "npm": {
     "publish": false
